@@ -1,4 +1,4 @@
-# ProGrammar Elite | Technical Documentation
+# Unhinged-Grammar-and-Spelling-fixer | Technical Documentation
 
 This version of the Unhinged Grammar Fixer is disguised as a high-end corporate SaaS platform. It maintains the absolute linguistic chaos of the original while looking like a tool used by a Fortune 500 company.
 
