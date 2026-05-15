@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unhinged-Grammar-and-Spelling-fixer</title>
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --primary: #2b2d42;
+            --accent: #ef233c;
+            --border: #d1d5db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 850px;
+            width: 90%;
+            margin: 50px auto;
+        }
+
+        .info-panel {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .info-panel h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .editor-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 20px;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            resize: none;
+            box-sizing: border-box;
+            background: #fafafa;
+        }
+
+        .footer-tools {
+            padding: 15px 25px;
+            background: white;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-pill {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4b5563;
+            background: #f3f4f6;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        .btn:hover { background: #1a1c2c; transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+
+        #result-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            display: none;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #1f2937;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unhinged-Grammar-and-Spelling-fixer</h1>
+</header>
+
+<div class="container">
+    <div class="info-panel">
+        <h2>Enterprise Intelligence & Contextual Harmonization</h2>
+        <p>Our deep-learning algorithm iterates through lexical structures to ensure cross-platform compatibility and high-fidelity semantic output. Input your text below to synchronize your prose with modern 2026 industry standards.</p>
+    </div>
+
+    <div class="editor-section">
+        <textarea id="input" placeholder="Enter formal documentation for semantic realignment..."></textarea>
+        <div class="footer-tools">
+            <div class="status-pill"><div class="pulse"></div> ENGINE: ACTIVE</div>
+            <button class="btn" onclick="process()">REALIGN PROSE</button>
+        </div>
+    </div>
+
+    <div id="result-area">
+        <span class="label">Harmonized Enterprise Output</span>
+        <div id="output-text"></div>
+    </div>
+</div>
+
+<script>
+    const lexicon = ["skibidi", "rizz", "gyatt", "fanum-tax", "ohio", "sigma", "grimace", "asbestos", "mayonnaise", "glitch", "industrial-waste", "concrete", "shrimp-alfredo", "tax-evasion", "lobotomy", "brain-rot", "cooked", "delusional", "glazing", "mewing", "mogging", "stuck-in-ohio", "looksmaxxing", "edge-lord", "gooning", "poggers", "sus", "amogus", "bussin", "cap", "no-cap", "fr-fr", "on-god", "low-taper-fade", "negative-aura", "positive-aura", "clout-demon", "goofy-ahhh", "quandale-dingle", "pookie", "ratio", "canceled", "main-character", "npc", "backrooms", "core-core", "slay", "yassify", "preppy", "coquette", "zesty", "fruit-loop", "alpha", "beta", "omega", "smegma", "gigachad", "mogged", "mew-streak", "jawline", "hollow-cheeks", "hunter-eyes", "negative-canthal-tilt", "positive-canthal-tilt", "bone-smashing", "jelqing", "edge-streak", "skibidi-toilet", "cameraman", "speaker-man", "tv-man", "g-man", "rizzler", "duke-dennis", "kai-cenat", "fanum", "agent-00", "baby-gronk", "livvy-dunne", "rizz-king", "grimace-shake", "banban", "garten-of-banban", "huggy-wuggy", "poppy-playtime", "tattletail", "fnaf", "freddy-fazbear", "bite-of-87", "william-afton", "golden-freddy", "springtrap", "circus-baby", "enard", "glamrock", "roxy-wolf", "monty-gator", "glamrock-freddy", "gregory", "cassie", "mimic", "burntrap", "blob", "vanny", "malhare", "dreadbear", "fetch", "lonely-freddy", "plushtrap", "nightmare-freddy", "nightmare-bonnie", "nightmare-chica", "nightmare-foxy", "nightmare-fredbear", "nightmare", "jack-o-bonnie", "jack-o-chica", "ballora", "funtime-freddy", "funtime-foxy", "bon-bon", "lolbit", "yendo", "minireena", "bidybab", "electrobab", "dark-springtrap", "scrap-baby", "scraptrap", "molten-freddy", "lefty", "helpy", "candy-cadet", "music-man", "el-chip", "funtime-chic", "rockstar-freddy", "rockstar-bonnie", "rockstar-chica", "rockstar-foxy", "nedd-bear", "pigpatch", "mr-hippo", "happy-frog", "security-puppet", "trash-and-the-gang", "bucket-bob", "pan-stan", "no-.1-crate", "mr-can-do", "candy-cadet", "dee-dee", "xor", "fredbear", "spring-bonnie", "shadow-freddy", "shadow-bonnie", "toy-freddy", "toy-bonnie", "toy-chica", "mangle", "balloon-boy", "jj", "puppet", "withered-freddy", "withered-bonnie", "withered-chica", "withered-foxy", "golden-freddy", "endo-01", "endo-02", "paperpals", "crying-child", "michael-afton", "elizabeth-afton", "henry-emily", "charlotte-emily", "cassidy", "susie", "jeremy", "fritz", "gabriel", "pete", "alec", "oswald", "sarah", "millie", "kelsey", "devon", "mick", "reed", "sergio", "robert", "hudson", "angel", "felix", "colton", "edward", "chloe", "mary", "jessica", "carlton", "john", "lamar", "marla", "jason", "clay-burke", "jen", "aunt-jen", "william-afton", "dave-miller", "springtrap", "scraptrap", "glitchtrap", "burntrap", "mimic", "vanny", "gregory", "cassie", "glamrock-freddy", "glamrock-chica", "roxy", "monty", "daycare-attendant", "sun", "moon", "eclipse", "staff-bots", "map-bot", "wet-floor-sign", "dj-music-man", "wind-up-music-man", "glamrock-endo", "blob", "tangle", "mexico", "taco-bell", "fortnite-battle-pass", "default-dance", "orange-justice", "take-the-l", "hype", "floss", "fresh", "ride-the-pony", "best-mates", "electro-shuffle", "renegade", "savage", "out-west", "say-so", "blinding-lights", "dynamite", "gangnam-style", "rick-roll", "never-gonna-give-you-up", "darude-sandstorm", "megalovania", "sans-undertale", "papyrus", "undyne", "alphys", "mettaton", "asgore", "toriel", "flowey", "frisk", "chara", "asriel", "gaster", "spamton", "jevil", "kris", "susie-deltarune", "ralsei", "noelle", "berdly", "queen-deltarune", "lancer", "rouxls-kaard", "king-deltarune", "seam", "clover-deltarune", "starlo", "ceroba", "martlet", "dalv", "axis", "kanako", "chujin", "integrity", "bravery", "justice", "kindness", "patience", "perseverance", "determination", "genocide-run", "pacifist-run", "neutral-run", "gaster-blaster", "blue-soul", "yellow-soul", "green-soul", "purple-soul", "orange-soul", "cyan-soul", "red-soul", "white-soul", "black-soul", "monster-kid", "temmie", "annoying-dog", "toby-fox", "tem-village", "bob-temmie", "muffet", "grillby", "burgerpants", "nice-cream-guy", "catty", "bratty", "gerson", "river-person", "mad-dummy", "napstablook", "shyren", "onion-san", "greater-dog", "lesser-dog", "doggo", "dogamy", "dogaressa", "ice-cap", "snowdrake", "chilldrake", "jerry", "glyde", "so-sorry", "mad-mew-mew", "rouxls-kaard", "chaos-chaos", "big-shot", "potassium", "kris-get-the-banana", "nubert", "trash-can", "swatch", "swatchlings", "tasque", "tasque-manager", "werewire", "maice", "sweet-cap'n-cakes", "spamton-neo", "spamton-g-spamton"];
+
+    function process() {
+        const input = document.getElementById('input').value;
+        const resultArea = document.getElementById('result-area');
+        const outputText = document.getElementById('output-text');
+
+        if (!input.trim()) return;
+
+        // Remove all punctuation
+        let text = input.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"");
+        
+        // Split into words
+        let words = text.split(/\s+/);
+        
+        // 80% replacement with unhinged words
+        let modified = words.map(word => {
+            if (word.length > 0 && Math.random() < 0.8) {
+                return lexicon[Math.floor(Math.random() * lexicon.length)];
+            }
+            return word;
+        });
+
+        // Run-on sentence logic
+        let processed = modified.join(" ") + " because we are locking in for the ohio grind and we must maintain sigma status fr fr on god skibidi toilet is the vibe";
+
+        outputText.innerText = processed;
+        resultArea.style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
