@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProGrammar Elite | Advanced Syntax Resolution</title>
+    <style>
+        :root {
+            --slate-900: #0f172a;
+            --blue-600: #2563eb;
+            --gray-100: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--gray-100);
+            color: var(--slate-900);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 1.5rem 0;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin-top: 4rem;
+        }
+
+        .app-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { margin: 0; font-size: 1.75rem; font-weight: 800; color: var(--blue-600); }
+        .subtitle { color: #64748b; margin: 0.5rem 0 2rem; font-size: 0.95rem; }
+
+        textarea {
+            width: 100%;
+            height: 220px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: none;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--blue-600);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #result-display {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--blue-600);
+            display: none;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .disclaimer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ProGrammar Elite</h1>
+</header>
+
+<div class="container">
+    <div class="app-box">
+        <p class="subtitle">Enterprise-Grade Semantic Optimization & Punctuation Cleanup</p>
+        <textarea id="input" placeholder="Paste your professional correspondence here for immediate resolution..."></textarea>
+        <button class="btn" onclick="resolve()">Analyze and Resolve</button>
+
+        <div id="result-display"></div>
+    </div>
+    <p class="disclaimer">Powered by proprietary Deep-Chain Neural Logic. Optimized for 2026 workplace standards.</p>
+</div>
+
+<script>
+    const jargon = [
+        "skibidi", "rizz", "gyatt", "fanum-tax", "ohio", "sigma", "grimace", 
+        "asbestos", "mayonnaise", "glitch", "industrial-waste", "concrete",
+        "shrimp-alfredo", "tax-evasion", "lobotomy", "brain-rot",
+        "cooked", "delusional", "glazing", "mewing", "mogging", "stuck-in-ohio"
+    ];
+
+    function resolve() {
+        const input = document.getElementById('input').value;
+        const display = document.getElementById('result-display');
+        
+        if (!input.trim()) return;
+
+        // Remove all punctuation (Unhinged Rule #1)
+        let noPunctuation = input.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"");
+        
+        // Split into words
+        let words = noPunctuation.split(/\s+/);
+        
+        // 80% sabotage rate (Unhinged Rule #2)
+        let processed = words.map(word => {
+            if (word.length > 0 && Math.random() < 0.8) {
+                return jargon[Math.floor(Math.random() * jargon.length)];
+            }
+            return word;
+        });
+
+        // Run-on sentence logic (Unhinged Rule #3)
+        let finalOutput = processed.join(" ") + " because the mission-critical objective remains focused on the ohio grind and we must maintain sigma status fr fr";
+
+        display.innerText = finalOutput;
+        display.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
